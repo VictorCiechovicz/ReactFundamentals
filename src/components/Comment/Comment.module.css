@@ -1,0 +1,93 @@
+.comment {
+  display: flex;
+  padding: 2.5rem 2.5rem 1.5rem 2rem;
+}
+
+.wrapperInf {
+  width: 100%;
+}
+
+.conteinerInf {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  background: var(--gray-700);
+
+  padding: 1rem 1rem 1.5rem 1rem;
+  border-radius: 9px;
+  margin-bottom: 1rem;
+}
+
+.buttonTrash{
+  background: transparent;
+  border: 0;
+  color: var(--gray-400);
+  cursor: pointer;
+  line-height: 0;
+  border-radius: 4px;
+  }
+
+  .buttonTrash:hover{
+    color:var(--red-500);
+  }
+
+.userInf {
+  display: flex;
+  flex-direction: column;
+}
+
+.userInf strong{
+  font-size: 14px;
+  color: var(--gray-100);
+  font-weight: bold;
+}
+.userInf span {
+  margin-bottom: 1rem;
+  font-size: 12px;
+  color: var(--gray-400);
+}
+
+.userInf p{
+  font-size: 14px;
+  color: var(--gray-300);
+}
+
+
+
+.imgProfile {
+  box-sizing: initial;
+  width: 3rem;
+  height: 3rem;
+  object-fit: cover;
+  border-radius: 8px;
+
+  margin-right: 1rem;
+}
+
+.containerLike {
+  display: flex;
+  align-items: center;
+}
+
+.containerLike span {
+  font-size:14px ;
+  margin-left: 0.6rem;
+  color: var(--gray-400);
+}
+
+.containerLike{
+  background: transparent;
+  border: 0;
+  color: var(--gray-400);
+  cursor: pointer;
+  line-height: 0;
+  border-radius: 4px;
+}
+.containerLike span:hover{
+  color: var(--green-500);
+}
+.containerLike:hover{
+  color: var(--green-500);
+}
+
+
