@@ -1,6 +1,6 @@
 .comment {
   display: flex;
-  padding: 2.5rem 2.5rem 1.5rem 2rem;
+  padding: 0rem 2.5rem 1.5rem 2rem;
 }
 
 .wrapperInf {
@@ -11,33 +11,33 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  background: var(--gray-700);
+  background: var(--gray-870);
 
   padding: 1rem 1rem 1.5rem 1rem;
   border-radius: 9px;
   margin-bottom: 1rem;
 }
 
-.buttonTrash{
+.buttonTrash {
   background: transparent;
   border: 0;
   color: var(--gray-400);
   cursor: pointer;
   line-height: 0;
   border-radius: 4px;
-  }
+}
 
-  .buttonTrash:hover{
-    color:var(--red-500);
-  }
+.buttonTrash:hover {
+  color: var(--red-500);
+}
 
 .userInf {
   display: flex;
   flex-direction: column;
 }
 
-.userInf strong{
-  font-size: 14px;
+.userInf strong {
+  font-size: 0.8rem;
   color: var(--gray-100);
   font-weight: bold;
 }
@@ -47,12 +47,10 @@
   color: var(--gray-400);
 }
 
-.userInf p{
-  font-size: 14px;
+.userInf p {
+  font-size: 0.8rem;
   color: var(--gray-300);
 }
-
-
 
 .imgProfile {
   box-sizing: initial;
@@ -70,12 +68,12 @@
 }
 
 .containerLike span {
-  font-size:14px ;
+  font-size: 0.8rem;
   margin-left: 0.6rem;
   color: var(--gray-400);
 }
 
-.containerLike{
+.containerLike {
   background: transparent;
   border: 0;
   color: var(--gray-400);
@@ -83,11 +81,9 @@
   line-height: 0;
   border-radius: 4px;
 }
-.containerLike span:hover{
+.containerLike span:hover {
   color: var(--green-500);
 }
-.containerLike:hover{
+.containerLike:hover {
   color: var(--green-500);
 }
-
-
