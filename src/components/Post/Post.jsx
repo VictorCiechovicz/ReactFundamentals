@@ -1,50 +1,121 @@
+import { format, formatDistanceToNow} from 'date-fns'
+import ptBr from 'date-fns/locale/pt-BR'
+
 import styles from './Post.module.css' 
+
 import { Comment } from '../Comment/Comment'
-
 import { Avatar } from '../Avatar/Avatar'
+import { useState } from 'react'
 
 
-export function Post(){
+export function Post({ author, publishedAt, content }) { 
+  const [comments, setComments] = useState([''])
+  const [newComments,setNewComments] = useState('')
+
+  const publishedDateFormatted = format(publishedAt, "dd 'de' LLLL 'às' HH:mm'h'", {
+    locale:ptBr,
+  })
+
+  const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
+    locale: ptBr,
+    addSuffix:true,
+  })
+
+  function hendleCreateNewComment() {
+    event.preventDefault()
+    
+    setComments([...comments, newComments])
+    setNewComments('')
+  }
+  
+  function handleNewComments() {
+    event.target.setCustomValidity('')
+    setNewComments(event.target.value)
+  }
+
+  function deleteComment(commentToDelete) {
+    const createNewArrayOfComments = comments.filter(comments => {
+      return comments!==commentToDelete
+    }
+  )
+    setComments(createNewArrayOfComments)
+  }
+
+  function handleNewCommentChange() {
+    event.target.setCustomValidity('Este campo é obrigatório!')
+  }
+
   return (
     <article className={styles.post}>
       
       <div className={styles.header}>
         <div className={styles.wrapperInfUser}>
-         <Avatar className={styles.imgProfile} src='https://avatars.githubusercontent.com/u/106246945?v=4'/>
+
+          <Avatar className={styles.imgProfile} src={author.authorUrl} />
+
           <div className={styles.wrapperInfProfile}>
-            <strong>Victor Ciechovicz</strong>
-            <span>Dev Front-End</span>
+
+            <strong>{author.name}</strong>
+
+            <span>{author.role}</span>
           </div>
 
 
          </div>
 
 
-        <time dateTime='2023-03-20'>
-          Públicado há 1h
+        <time title= {publishedDateFormatted} dateTime={publishedAt.toISOString()}>
+           {publishedDateRelativeToNow}
         </time>
       </div>
       
       <div className={styles.mansage}>
-      <p>Fala galeraa 👋</p>
-      <p>Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀</p>
-        <p>👉<a href='#'>  jane.design/doctorcare </a> </p>
-        <p> <a href='#'>#novoprojeto #nlw #rocketseat  </a></p>
+        {
+          content.map(line => {
+            if (line.type === 'paragraph') {
+              return <p key={line.content}>{line.content}</p>
+            } else if (line.type === 'link') {
+              return <p key={line.content}><a href='#'>{line.content}</a></p>
+            }
+            
+          }
+            )
+     }
       </div>
    
-      <form className={styles.comentForm}>
+      <form
+        onSubmit={hendleCreateNewComment}
+        className={styles.comentForm}
+       
+      
+      >
         <strong>Deixe seu feedback</strong>
 
-        <textarea placeholder='Deixe seu comentário' />
+        <textarea
+          name="comment"
+          placeholder='Deixe seu comentário'
+          value={newComments}
+          onChange={handleNewComments}
+          onInvalid={handleNewCommentChange}
+          required
+        />
         
 
         <footer>
-                 <button  type='submit'>Publicar</button>
+          <button
+           disabled={newComments.length   === 0}
+            type='submit'>Publicar</button>
       </footer>
           
 
 </form >
-<Comment/>
+      {comments.map(comments => {
+        return <Comment
+          key={comments}
+          content={comments}
+          onDeleteComment={deleteComment}
+        />
+})}
 </article>
   )
 }
